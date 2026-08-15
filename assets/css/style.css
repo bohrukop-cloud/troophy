@@ -1134,3 +1134,123 @@ footer {
     font-size: 3.2rem;
   }
 }
+
+/* =========================================
+   TROOP BOARD PLAYER
+========================================= */
+
+.player {
+  position: fixed;
+  left: 20px;
+  right: 20px;
+  bottom: 18px;
+  z-index: 1000;
+
+  display: grid;
+  grid-template-columns: 58px 1fr auto auto;
+  align-items: center;
+  gap: 16px;
+
+  padding: 12px 16px;
+
+  border: 1px solid var(--line);
+  border-radius: 20px;
+
+  background: var(--surface);
+  backdrop-filter: blur(22px);
+
+  box-shadow: 0 20px 70px rgba(0,0,0,.35);
+}
+
+.player-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.player-progress span {
+  font-size: .65rem;
+  color: var(--muted);
+}
+
+.player-progress input {
+  width: min(360px, 100%);
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.player-controls button,
+.player-volume button {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+}
+
+.player-controls button:hover,
+.player-controls button.active {
+  background: var(--accent);
+  color: #050608;
+}
+
+.player-volume {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.player-volume input {
+  width: 90px;
+}
+
+.track.playing {
+  outline: 1px solid var(--accent);
+  background: rgba(255,255,255,.04);
+}
+
+@media (max-width: 760px) {
+
+  .player {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+
+    grid-template-columns:
+      48px 1fr auto;
+
+    gap: 10px;
+
+    padding: 10px;
+  }
+
+  .player-art {
+    width: 48px;
+  }
+
+  .player-volume {
+    display: none;
+  }
+
+  .player-controls {
+    gap: 3px;
+  }
+
+  .player-controls button {
+    width: 30px;
+    height: 30px;
+    font-size: .75rem;
+  }
+
+  .player-progress {
+    max-width: 100%;
+  }
+
+}

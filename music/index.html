@@ -278,35 +278,88 @@
 </main>
 
 
-<div
-  class="player"
-  id="player"
->
+<div class="player" id="player">
 
-  <div class="track-art" id="playerArt">
-    T
-  </div>
+  <div class="track-art" id="playerArt">T</div>
 
   <div class="player-info">
 
-    <strong id="playerTitle">
-      Nothing playing
-    </strong>
+    <strong id="playerTitle">Nothing playing</strong>
 
-    <small id="playerArtist">
-      Troop Board 100
-    </small>
+    <small id="playerArtist">Troop Board 100</small>
+
+    <div class="player-progress">
+      <span id="currentTime">0:00</span>
+
+      <input
+        id="progressBar"
+        type="range"
+        min="0"
+        max="100"
+        value="0"
+        step="0.1"
+        aria-label="Track progress"
+      >
+
+      <span id="duration">0:00</span>
+    </div>
 
   </div>
 
-  <button
-    class="track-play"
-    id="playerButton"
-  >
-    ▶
-  </button>
+  <div class="player-controls">
+
+    <button
+      type="button"
+      id="shuffleButton"
+      aria-label="Shuffle"
+    >⤨</button>
+
+    <button
+      type="button"
+      id="previousButton"
+      aria-label="Previous track"
+    >◀</button>
+
+    <button
+      type="button"
+      class="track-play"
+      id="playerButton"
+      aria-label="Play"
+    >▶</button>
+
+    <button
+      type="button"
+      id="nextButton"
+      aria-label="Next track"
+    >▶</button>
+
+    <button
+      type="button"
+      id="repeatButton"
+      aria-label="Repeat"
+    >↻</button>
+
+  </div>
+
+  <div class="player-volume">
+
+    <span>⌁</span>
+
+    <input
+      id="volumeBar"
+      type="range"
+      min="0"
+      max="1"
+      value="1"
+      step="0.01"
+      aria-label="Volume"
+    >
+
+  </div>
 
 </div>
+
+<audio id="audioPlayer" preload="metadata"></audio>
 
 
 <footer>
