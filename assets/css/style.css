@@ -1310,3 +1310,158 @@ footer {
   color: var(--text);
   font-size: 1.1rem;
 }
+
+/* =========================================
+   TROOPHY APP DETAILS
+========================================= */
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 30px;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: var(--text);
+}
+
+.app-detail {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 45px;
+  align-items: start;
+
+  max-width: 900px;
+  margin: 70px auto;
+  padding: 45px;
+
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background: var(--surface);
+}
+
+.detail-icon {
+  width: 180px;
+  height: 180px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 40px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--accent),
+      var(--surface-2)
+    );
+
+  color: #050608;
+  font-size: 5rem;
+  font-weight: 900;
+}
+
+.detail-tag {
+  display: inline-block;
+  margin-bottom: 12px;
+
+  color: var(--accent);
+
+  font-size: .7rem;
+  font-weight: 900;
+  letter-spacing: .14em;
+}
+
+.detail-content h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  line-height: .95;
+}
+
+.detail-developer {
+  color: var(--muted);
+  margin: 12px 0 25px;
+}
+
+.detail-description {
+  max-width: 650px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.detail-stats {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 30px 0;
+}
+
+.detail-stats div {
+  min-width: 110px;
+  padding: 15px;
+
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.detail-stats strong,
+.detail-stats span {
+  display: block;
+}
+
+.detail-stats strong {
+  margin-bottom: 5px;
+}
+
+.detail-stats span {
+  color: var(--muted);
+  font-size: .72rem;
+}
+
+.detail-download,
+.detail-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+  border-radius: 12px;
+
+  padding: 12px 18px;
+  margin: 4px 4px 4px 0;
+
+  font-weight: 700;
+}
+
+.detail-download {
+  background: var(--accent);
+  color: #050608;
+}
+
+.detail-button {
+  border: 1px solid var(--line);
+  color: var(--text);
+}
+
+.detail-button:hover {
+  border-color: var(--accent);
+}
+
+@media (max-width: 700px) {
+
+  .app-detail {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding: 25px;
+    margin: 40px auto;
+  }
+
+  .detail-icon {
+    width: 110px;
+    height: 110px;
+    border-radius: 28px;
+    font-size: 3rem;
+  }
+
+}
