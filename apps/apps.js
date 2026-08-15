@@ -1,13 +1,12 @@
 const apps = [
   {
-    name: "Discover App",
+    name: "Discover",
     category: "productivity",
     description: "A focused space for ideas and everyday discovery.",
     icon: "D",
     rank: 1,
     playUrl: "https://play.google.com/"
   },
-
   {
     name: "Connect",
     category: "social",
@@ -16,7 +15,6 @@ const apps = [
     rank: 2,
     playUrl: "https://play.google.com/"
   },
-
   {
     name: "Studio",
     category: "entertainment",
@@ -25,7 +23,6 @@ const apps = [
     rank: 3,
     playUrl: "https://play.google.com/"
   },
-
   {
     name: "Focus",
     category: "productivity",
@@ -34,7 +31,6 @@ const apps = [
     rank: 4,
     playUrl: "https://play.google.com/"
   },
-
   {
     name: "Social Hub",
     category: "social",
@@ -43,11 +39,10 @@ const apps = [
     rank: 5,
     playUrl: "https://play.google.com/"
   },
-
   {
     name: "Play Zone",
     category: "entertainment",
-    description: "A collection of entertainment worth exploring.",
+    description: "Entertainment worth exploring.",
     icon: "P",
     rank: 6,
     playUrl: "https://play.google.com/"
@@ -59,20 +54,16 @@ const filters = document.querySelectorAll(".filter-button");
 
 function renderApps(filter = "all") {
 
-  grid.innerHTML = "";
+  if (!grid) return;
 
-  const filtered =
+  const visibleApps =
     filter === "all"
       ? apps
       : apps.filter(app => app.category === filter);
 
-  filtered.forEach(app => {
+  grid.innerHTML = visibleApps.map(app => `
+    <article class="app-card">
 
-    const card = document.createElement("article");
-
-    card.className = "app-card";
-
-    card.innerHTML = `
       <div>
         <div class="app-icon">
           ${app.icon}
@@ -97,16 +88,15 @@ function renderApps(filter = "all") {
           class="play-button"
           href="${app.playUrl}"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
         >
           Google Play ↗
         </a>
 
       </div>
-    `;
 
-    grid.appendChild(card);
-  });
+    </article>
+  `).join("");
 }
 
 filters.forEach(button => {

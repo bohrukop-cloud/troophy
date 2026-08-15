@@ -1,150 +1,97 @@
 const tracks = [
-  {
-    title: "Troophy Intro",
-    artist: "Troophy",
-    art: "01"
-  },
-  {
-    title: "Night Drive",
-    artist: "Troop Artist",
-    art: "02"
-  },
-  {
-    title: "Afterlight",
-    artist: "Troop Artist",
-    art: "03"
-  },
-  {
-    title: "New Perspective",
-    artist: "Troop Artist",
-    art: "04"
-  },
-  {
-    title: "Midnight Signal",
-    artist: "Troop Artist",
-    art: "05"
-  },
-  {
-    title: "Parallel",
-    artist: "Troop Artist",
-    art: "06"
-  },
-  {
-    title: "Frequency",
-    artist: "Troop Artist",
-    art: "07"
-  },
-  {
-    title: "Slow Motion",
-    artist: "Troop Artist",
-    art: "08"
-  },
-  {
-    title: "After Hours",
-    artist: "Troop Artist",
-    art: "09"
-  },
-  {
-    title: "Open Skies",
-    artist: "Troop Artist",
-    art: "10"
-  }
+  ["Troophy Intro", "Troophy"],
+  ["Night Drive", "Troop Artist"],
+  ["Afterlight", "Troop Artist"],
+  ["New Perspective", "Troop Artist"],
+  ["Midnight Signal", "Troop Artist"],
+  ["Parallel", "Troop Artist"],
+  ["Frequency", "Troop Artist"],
+  ["Slow Motion", "Troop Artist"],
+  ["After Hours", "Troop Artist"],
+  ["Open Skies", "Troop Artist"]
 ];
 
-const tracksElement =
-  document.getElementById("tracks");
-
-const player =
-  document.getElementById("player");
-
-const playerTitle =
-  document.getElementById("playerTitle");
-
-const playerArtist =
-  document.getElementById("playerArtist");
-
-const playerArt =
-  document.getElementById("playerArt");
+const tracksElement = document.getElementById("tracks");
+const player = document.getElementById("player");
+const playerTitle = document.getElementById("playerTitle");
+const playerArtist = document.getElementById("playerArtist");
+const playerArt = document.getElementById("playerArt");
 
 let currentTrack = null;
 
 function renderTracks() {
 
-  tracksElement.innerHTML = "";
+  if (!tracksElement) return;
 
-  tracks.forEach((track, index) => {
+  tracksElement.innerHTML = tracks.map(
+    ([title, artist], index) => `
+      <div class="track">
 
-    const row =
-      document.createElement("div");
-
-    row.className = "track";
-
-    row.innerHTML = `
-      <div class="track-rank">
-        ${String(index + 1).padStart(2, "0")}
-      </div>
-
-      <div class="track-main">
-
-        <div class="track-art">
-          ${track.art}
+        <div class="track-rank">
+          ${String(index + 1).padStart(2, "0")}
         </div>
 
-        <div>
-          <div class="track-title">
-            ${track.title}
+        <div class="track-main">
+
+          <div class="track-art">
+            ${String(index + 1).padStart(2, "0")}
           </div>
 
-          <div class="track-artist">
-            ${track.artist}
+          <div>
+            <div class="track-title">
+              ${title}
+            </div>
+
+            <div class="track-artist">
+              ${artist}
+            </div>
           </div>
+
         </div>
 
+        <button
+          class="track-play"
+          data-index="${index}"
+          aria-label="Play ${title}"
+        >
+          ▶
+        </button>
+
       </div>
+    `
+  ).join("");
 
-      <button
-        class="track-play"
-        aria-label="Play ${track.title}"
-      >
-        ▶
-      </button>
-    `;
+  tracksElement
+    .querySelectorAll(".track-play")
+    .forEach(button => {
 
-    row
-      .querySelector(".track-play")
-      .addEventListener("click", () => {
-        playTrack(track);
+      button.addEventListener("click", () => {
+
+        const index =
+          Number(button.dataset.index);
+
+        playTrack(index);
       });
 
-    tracksElement.appendChild(row);
-  });
+    });
 }
 
-function playTrack(track) {
+function playTrack(index) {
 
-  currentTrack = track;
+  currentTrack = tracks[index];
+
+  if (!currentTrack) return;
 
   playerTitle.textContent =
-    track.title;
+    currentTrack[0];
 
   playerArtist.textContent =
-    track.artist;
+    currentTrack[1];
 
   playerArt.textContent =
-    track.art;
+    String(index + 1).padStart(2, "0");
 
   player.classList.add("active");
 }
-
-document
-  .getElementById("playerButton")
-  .addEventListener("click", () => {
-
-    if (!currentTrack) return;
-
-    alert(
-      "Audio playback will be connected in the next Troop Board phase."
-    );
-  });
 
 renderTracks();
