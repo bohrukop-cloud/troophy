@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>Troop Board 100 — Troophy</title>
+
+  <meta
+    name="description"
+    content="Troop Board 100 — discover the music people are listening to."
+  >
+
+  <meta name="theme-color" content="#050608">
+
+  <link
+    rel="stylesheet"
+    href="../assets/css/style.css"
+  >
+
+  <style>
+
+    .music-page {
+      padding-top: 150px;
+      padding-bottom: 120px;
+    }
+
+    .music-hero {
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 70px;
+      align-items: end;
+      margin-bottom: 70px;
+    }
+
+    .music-hero h1 {
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      line-height: .85;
+      letter-spacing: -.085em;
+    }
+
+    .music-hero h1 span {
+      color: var(--accent);
+    }
+
+    .music-hero p {
+      max-width: 600px;
+      margin-top: 25px;
+      color: var(--muted);
+    }
+
+    .board-number {
+      font-size: 9rem;
+      line-height: .7;
+      font-weight: 950;
+      letter-spacing: -.1em;
+      color: rgba(217,255,98,.08);
+      text-align: right;
+    }
+
+    .tracks {
+      border-top: 1px solid var(--line);
+    }
+
+    .track {
+      display: grid;
+      grid-template-columns: 60px 1fr auto;
+      gap: 20px;
+      align-items: center;
+      padding: 20px 10px;
+      border-bottom: 1px solid var(--line);
+      transition: .25s;
+    }
+
+    .track:hover {
+      background: rgba(255,255,255,.025);
+    }
+
+    .track-rank {
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 850;
+    }
+
+    .track-main {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .track-art {
+      width: 54px;
+      height: 54px;
+      flex: 0 0 54px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .track-title {
+      font-weight: 800;
+      letter-spacing: -.025em;
+    }
+
+    .track-artist {
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .track-play {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--accent);
+      cursor: pointer;
+    }
+
+    .player {
+      position: fixed;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      z-index: 900;
+      display: none;
+      align-items: center;
+      gap: 15px;
+      padding: 13px 16px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(10,12,15,.92);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 70px rgba(0,0,0,.4);
+    }
+
+    .player.active {
+      display: flex;
+    }
+
+    .player-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .player-info strong,
+    .player-info small {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .player-info small {
+      color: var(--muted);
+    }
+
+    @media(max-width: 800px) {
+      .music-hero {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .board-number {
+        display: none;
+      }
+    }
+
+    @media(max-width: 600px) {
+      .track {
+        grid-template-columns: 35px 1fr 40px;
+        gap: 10px;
+      }
+
+      .track-art {
+        width: 45px;
+        height: 45px;
+        flex-basis: 45px;
+      }
+
+      .track-main {
+        gap: 10px;
+      }
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+  <div class="container nav">
+
+    <a href="../index.html" class="brand">
+      TROO<span>PHY</span>
+    </a>
+
+    <nav class="nav-menu" id="navMenu">
+
+      <a href="../index.html">
+        Home
+      </a>
+
+      <a href="../apps/">
+        Trending Apps
+      </a>
+
+      <a href="./">
+        Troop Board 100
+      </a>
+
+    </nav>
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+
+</header>
+
+
+<main class="music-page">
+
+  <div class="container">
+
+    <div class="music-hero">
+
+      <div>
+
+        <span class="section-label">
+          TROOPHY / MUSIC
+        </span>
+
+        <h1>
+          TROOP
+          <span>BOARD 100.</span>
+        </h1>
+
+        <p>
+          A living music chart built for discovery.
+          Find tracks worth pressing play on.
+        </p>
+
+      </div>
+
+      <div class="board-number">
+        100
+      </div>
+
+    </div>
+
+
+    <div
+      class="tracks"
+      id="tracks"
+    ></div>
+
+  </div>
+
+</main>
+
+
+<div
+  class="player"
+  id="player"
+>
+
+  <div class="track-art" id="playerArt">
+    T
+  </div>
+
+  <div class="player-info">
+
+    <strong id="playerTitle">
+      Nothing playing
+    </strong>
+
+    <small id="playerArtist">
+      Troop Board 100
+    </small>
+
+  </div>
+
+  <button
+    class="track-play"
+    id="playerButton"
+  >
+    ▶
+  </button>
+
+</div>
+
+
+<footer>
+
+  <div class="container footer-inner">
+
+    <a href="../index.html" class="brand">
+      TROO<span>PHY</span>
+    </a>
+
+    <p>
+      © <span id="year"></span> Troophy
+    </p>
+
+  </div>
+
+</footer>
+
+
+<script src="../assets/js/app.js"></script>
+<script src="music.js"></script>
+
+</body>
+</html>

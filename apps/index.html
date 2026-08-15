@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>Trending Apps — Troophy</title>
+
+  <meta
+    name="description"
+    content="Discover Android apps worth checking out on Troophy."
+  >
+
+  <meta name="theme-color" content="#050608">
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <style>
+    .apps-page {
+      padding-top: 150px;
+      padding-bottom: 100px;
+    }
+
+    .apps-hero {
+      max-width: 850px;
+      margin-bottom: 70px;
+    }
+
+    .apps-hero h1 {
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      line-height: .88;
+      letter-spacing: -.08em;
+    }
+
+    .apps-hero h1 span {
+      color: var(--accent);
+    }
+
+    .apps-hero p {
+      max-width: 600px;
+      color: var(--muted);
+      margin-top: 25px;
+    }
+
+    .apps-toolbar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .filter-button {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      padding: 10px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    .filter-button.active {
+      background: var(--accent);
+      color: #050608;
+      border-color: var(--accent);
+      font-weight: 800;
+    }
+
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .app-card {
+      padding: 25px;
+      min-height: 290px;
+      border: 1px solid var(--line);
+      border-radius: 25px;
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: .35s var(--ease);
+    }
+
+    .app-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(217,255,98,.3);
+    }
+
+    .app-icon {
+      width: 68px;
+      height: 68px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      font-size: 1.5rem;
+      font-weight: 900;
+    }
+
+    .app-category {
+      margin-top: 20px;
+      color: var(--accent);
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+    }
+
+    .app-card h2 {
+      margin-top: 6px;
+      font-size: 1.5rem;
+      letter-spacing: -.05em;
+    }
+
+    .app-card p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .app-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .app-rank {
+      color: var(--muted);
+      font-size: .75rem;
+      font-weight: 800;
+    }
+
+    .play-button {
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: var(--text);
+      color: #050608;
+      font-size: .72rem;
+      font-weight: 850;
+    }
+
+    @media(max-width: 850px) {
+      .apps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width: 560px) {
+      .apps-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+
+    <a href="../index.html" class="brand">
+      TROO<span>PHY</span>
+    </a>
+
+    <nav class="nav-menu" id="navMenu">
+      <a href="../index.html">Home</a>
+      <a href="./">Trending Apps</a>
+      <a href="../music/">Troop Board 100</a>
+    </nav>
+
+    <button class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+</header>
+
+
+<main class="apps-page">
+
+  <div class="container">
+
+    <div class="apps-hero">
+
+      <span class="section-label">
+        TROOPHY / APPS
+      </span>
+
+      <h1>
+        Apps worth
+        <span>discovering.</span>
+      </h1>
+
+      <p>
+        Explore Android apps through Troophy. Find useful,
+        entertaining and interesting apps in one focused place.
+      </p>
+
+    </div>
+
+
+    <div class="apps-toolbar">
+
+      <button
+        class="filter-button active"
+        data-filter="all"
+      >
+        All
+      </button>
+
+      <button
+        class="filter-button"
+        data-filter="productivity"
+      >
+        Productivity
+      </button>
+
+      <button
+        class="filter-button"
+        data-filter="social"
+      >
+        Social
+      </button>
+
+      <button
+        class="filter-button"
+        data-filter="entertainment"
+      >
+        Entertainment
+      </button>
+
+    </div>
+
+
+    <div class="apps-grid" id="appsGrid"></div>
+
+  </div>
+
+</main>
+
+
+<footer>
+  <div class="container footer-inner">
+
+    <a href="../index.html" class="brand">
+      TROO<span>PHY</span>
+    </a>
+
+    <p>
+      © <span id="year"></span> Troophy
+    </p>
+
+  </div>
+</footer>
+
+
+<script src="../assets/js/app.js"></script>
+<script src="apps.js"></script>
+
+</body>
+</html>
