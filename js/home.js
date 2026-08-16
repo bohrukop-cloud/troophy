@@ -22,9 +22,18 @@
     troops,
 
     trending(limit = 6) {
-      return [...apps]
-        .sort((a, b) => (b.trend || 0) - (a.trend || 0))
-        .slice(0, limit);
+      if (window.TroophyLive) {
+      return window.TroophyLive
+        .trending(limit);
+    }
+
+    return [...apps]
+      .sort(
+        (a, b) =>
+          (b.trend || 0) -
+          (a.trend || 0)
+      )
+      .slice(0, limit);
     },
 
     rising(limit = 6) {
@@ -91,6 +100,14 @@
           <span class="trend-score">
             #${String(index + 1).padStart(2, "0")}
           </span>
+
+          ${
+            window.TroophyLive
+              ? `<span class="live-badge">
+                   ${window.TroophyLive.getBadge(app)}
+                 </span>`
+              : ""
+          }
 
         </div>
 

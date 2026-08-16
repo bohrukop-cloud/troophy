@@ -72,6 +72,14 @@ const target =
 
 if (app && target) {
 
+  if (window.TroophyLive) {
+    window.TroophyLive.recordView(app);
+  }
+
+  if (window.TroophyRecommendations) {
+    window.TroophyRecommendations.remember(app);
+  }
+
   if (window.TroophyRecommendations) {
     window.TroophyRecommendations.remember(app);
   }
