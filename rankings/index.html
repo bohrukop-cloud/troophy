@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <meta
+    name="description"
+    content="Troophy Top 100 — discover the world's trending apps, rising discoveries and hottest picks."
+  >
+
+  <title>Top 100 — Troophy</title>
+
+  <link
+    rel="stylesheet"
+    href="../style.css"
+  >
+
+  <style>
+
+    .rank-page {
+      min-height: 100vh;
+      padding: 110px 0 100px;
+    }
+
+    .rank-hero {
+      margin-bottom: 45px;
+    }
+
+    .rank-hero h1 {
+      margin: 10px 0 15px;
+      font-size: clamp(3rem, 9vw, 7rem);
+      line-height: .9;
+      letter-spacing: -.07em;
+    }
+
+    .rank-hero p {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .rank-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 30px 0;
+    }
+
+    .rank-filter {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      padding: 10px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .rank-filter.active,
+    .rank-filter:hover {
+      color: var(--text);
+      border-color: var(--accent);
+    }
+
+    .rank-search {
+      width: 100%;
+      max-width: 620px;
+      margin-bottom: 30px;
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      outline: 0;
+      background: var(--surface);
+      color: var(--text);
+      font: inherit;
+    }
+
+    .rank-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .rank-item {
+      display: grid;
+      grid-template-columns:
+        65px 52px minmax(0, 1fr)
+        110px 30px;
+
+      align-items: center;
+      gap: 15px;
+
+      padding: 15px 18px;
+
+      border: 1px solid var(--line);
+      border-radius: 18px;
+
+      background: var(--surface);
+
+      text-decoration: none;
+      color: var(--text);
+
+      transition: .2s ease;
+    }
+
+    .rank-item:hover {
+      transform: translateX(5px);
+      border-color: var(--accent);
+    }
+
+    .rank-number {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--muted);
+    }
+
+    .rank-icon {
+      width: 52px;
+      height: 52px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 14px;
+      background: var(--surface-2);
+
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+
+    .rank-name {
+      min-width: 0;
+    }
+
+    .rank-name strong,
+    .rank-name small {
+      display: block;
+    }
+
+    .rank-name strong {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .rank-name small {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: .72rem;
+    }
+
+    .rank-score {
+      text-align: right;
+      font-weight: 900;
+    }
+
+    .rank-movement {
+      text-align: center;
+      font-size: .75rem;
+      font-weight: 900;
+    }
+
+    .movement-up {
+      color: #5ee58a;
+    }
+
+    .movement-hot {
+      color: var(--accent);
+    }
+
+    .rank-empty {
+      padding: 60px 20px;
+      text-align: center;
+      color: var(--muted);
+      border: 1px dashed var(--line);
+      border-radius: 20px;
+    }
+
+    @media (max-width: 700px) {
+
+      .rank-page {
+        padding-top: 80px;
+      }
+
+      .rank-item {
+        grid-template-columns:
+          42px 44px minmax(0, 1fr)
+          25px;
+
+        padding: 12px;
+      }
+
+      .rank-score {
+        display: none;
+      }
+
+      .rank-icon {
+        width: 44px;
+        height: 44px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+  <div class="container nav">
+
+    <a
+      href="../"
+      class="brand"
+    >
+      Troophy
+    </a>
+
+    <nav class="nav-menu">
+
+      <a href="../">Home</a>
+
+      <a href="../apps/">Apps</a>
+
+      <a href="../music/">Music</a>
+
+      <a href="./">Top 100</a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+<main class="rank-page">
+
+  <div class="container">
+
+    <div class="rank-hero">
+
+      <span class="section-label">
+        TROOPHY RANKINGS
+      </span>
+
+      <h1>
+        TOP 100.
+      </h1>
+
+      <p>
+        The discoveries moving through Troophy right now.
+        Explore what's hot, what's rising and what's worth finding next.
+      </p>
+
+    </div>
+
+
+    <input
+      class="rank-search"
+      id="rankSearch"
+      type="search"
+      placeholder="Search the Top 100..."
+      autocomplete="off"
+    >
+
+
+    <div
+      class="rank-controls"
+      id="rankControls"
+    >
+
+      <button
+        class="rank-filter active"
+        data-filter="global"
+      >
+        Global
+      </button>
+
+      <button
+        class="rank-filter"
+        data-filter="rising"
+      >
+        Rising
+      </button>
+
+      <button
+        class="rank-filter"
+        data-filter="hot"
+      >
+        Hot
+      </button>
+
+      <button
+        class="rank-filter"
+        data-filter="fresh"
+      >
+        Fresh
+      </button>
+
+    </div>
+
+
+    <div
+      class="rank-list"
+      id="rankList"
+    ></div>
+
+  </div>
+
+</main>
+
+
+<script src="../data/troophy-data.js"></script>
+
+<script src="../assets/js/live-ranking.js"></script>
+
+<script src="./rankings.js"></script>
+
+</body>
+</html>
