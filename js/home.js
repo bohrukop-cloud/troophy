@@ -254,6 +254,8 @@
   function surpriseMe() {
 
     const app =
+      window.TroophyRecommendations
+        ?.discover() ||
       Troophy.random();
 
     if (!app) return;
@@ -265,6 +267,7 @@
 
     window.location.href =
       destination;
+
   }
 
   function wireSurpriseButtons() {
@@ -300,6 +303,27 @@
 
   }
 
+
+  function renderForYou() {
+
+    const container =
+      document.getElementById("forYouApps");
+
+    if (!container) return;
+
+    const engine =
+      window.TroophyRecommendations;
+
+    const picks =
+      engine
+        ? engine.forYou(6)
+        : Troophy.trending(6);
+
+    container.innerHTML =
+      picks.map(createAppCard).join("");
+
+  }
+
   function updateYear() {
 
     const year =
@@ -315,6 +339,7 @@
   function init() {
 
     renderTrending();
+    renderForYou();
     renderRising();
     renderTroopBoard();
     renderCategories();

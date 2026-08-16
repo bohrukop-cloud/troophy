@@ -72,6 +72,10 @@ const target =
 
 if (app && target) {
 
+  if (window.TroophyRecommendations) {
+    window.TroophyRecommendations.remember(app);
+  }
+
   document.title =
     `${app.name} — Troophy`;
 

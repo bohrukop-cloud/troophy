@@ -335,3 +335,74 @@
   }
 
 }
+
+/* =========================================
+   TROOPHY PERSONAL DISCOVERY
+========================================= */
+
+#forYou {
+  position: relative;
+}
+
+#forYou::before {
+  content: "";
+  position: absolute;
+  inset: 10% 0 auto;
+  height: 300px;
+  pointer-events: none;
+  opacity: .35;
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      var(--accent),
+      transparent 65%
+    );
+  filter: blur(80px);
+}
+
+#forYou .container {
+  position: relative;
+}
+
+.recommendation-card {
+  position: relative;
+}
+
+@keyframes troophyReveal {
+
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+.command-card {
+  animation:
+    troophyReveal .45s ease both;
+}
+
+.command-card:nth-child(2) {
+  animation-delay: .05s;
+}
+
+.command-card:nth-child(3) {
+  animation-delay: .1s;
+}
+
+.command-card:nth-child(4) {
+  animation-delay: .15s;
+}
+
+.command-card:nth-child(5) {
+  animation-delay: .2s;
+}
+
+.command-card:nth-child(6) {
+  animation-delay: .25s;
+}
